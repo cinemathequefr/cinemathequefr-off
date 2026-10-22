@@ -825,3 +825,24 @@ label.open:hover > .fold-ctrl {
     background-color: #e7e7f3;
   }
 }
+
+.js .calendar:not(.calendar-ready) {
+  visibility: hidden;
+}
+
+.calendar .day.past > :not(.date) {
+  display: none;
+}
+
+.calendar .day.past-week {
+  display: none;
+}
+
+.calendar .day.past {
+  background-color: #eee;
+}
+
+.calendar .day.past .date {
+  color: #666;
+  border-color: #999;
+}

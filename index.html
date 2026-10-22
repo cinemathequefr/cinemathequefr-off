@@ -20,6 +20,9 @@
     />
     <link href="./main.css" rel="stylesheet" />
     <link href="./calendrier.css" rel="stylesheet" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
   </head>
   <body>
     <svg
@@ -5025,6 +5028,39 @@
       <!-- FIN CALENDRIER -->
     </main>
     <script>
+      function hidePastCalendarDays() {
+        const calendar = document.querySelector(".calendar");
+        if (!calendar) return;
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const date = String(now.getDate()).padStart(2, "0");
+        const today = `${year}-${month}-${date}`;
+        const days = Array.from(
+          calendar.querySelectorAll(":scope > .day[data-date]"),
+        );
+
+        for (let index = 0; index < days.length; index += 7) {
+          const week = days.slice(index, index + 7);
+          const wholeWeekIsPast =
+            week.length === 7 && week.every((day) => day.dataset.date < today);
+
+          week.forEach((day) => {
+            if (day.dataset.date < today) {
+              day.classList.add("past");
+            }
+            if (wholeWeekIsPast) {
+              day.classList.add("past-week");
+            }
+          });
+        }
+
+        calendar.classList.add("calendar-ready");
+      }
+
+      hidePastCalendarDays();
+
       function toggleFoldItems(event) {
         const button = event.currentTarget;
         const itemsBlock = button.closest(".items");
