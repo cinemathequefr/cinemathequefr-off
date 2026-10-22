@@ -402,7 +402,7 @@
 }
 
 .open .fold-ctrl {
-  background-color: #ddd;
+  background-color: var(--cf-turquoise-dark-2, #ddd);
 }
 
 label.open .fold-ctrl::before {
@@ -411,11 +411,10 @@ label.open .fold-ctrl::before {
 
 label:hover > .fold-ctrl {
   background-color: var(--cf-turquoise-dark-2, #158);
-  /* background-color: #158; */
 }
 
 label.open:hover > .fold-ctrl {
-  background-color: #aaa;
+  background-color: var(--cf-turquoise-dark-2, #ddd);
 }
 
 .fold {
