@@ -70,3 +70,7 @@ p {
 strong {
   font-weight: 600;
 }
+
+.info {
+  padding: 36px;
+}

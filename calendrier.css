@@ -6,7 +6,8 @@
 .calendar {
   position: relative;
   width: calc(100vw - var(--vtoolbar-w) - 25px);
-  padding: 12px;
+  padding: 36px;
+  background-color: #d9d9d9;
   margin: 0;
   display: grid;
   column-gap: 3px;
@@ -32,7 +33,8 @@
   justify-content: space-between;
   align-content: flex-start;
   align-items: flex-start;
-  background-color: #ccc;
+  background-color: #fff;
+  /* background-color: #ccc; */
 }
 
 .day:has(.seance:not(.hidden)) {
@@ -55,6 +57,9 @@
 
 .day.header > span {
   flex: 0 0 100%;
+  font-family: Quicksand;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .calendar:not(.equal) .day.header.closing-day > span {
@@ -839,10 +844,10 @@ label.open:hover > .fold-ctrl {
 }
 
 .calendar .day.past {
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .calendar .day.past .date {
-  color: #666;
-  border-color: #999;
+  color: #ccc;
+  border-color: #ddd;
 }
