@@ -1,13 +1,13 @@
 /* Calendrier */
 .calendar-container {
   flex: 1 1 auto;
+  background-color: #acbcb8;
+  padding: 36px;
 }
 
 .calendar {
   position: relative;
   width: calc(100vw - var(--vtoolbar-w) - 25px);
-  padding: 36px;
-  background-color: #acbcb8;
   /* background-color: #d9d9d9; */
   margin: 0;
   display: grid;
@@ -496,6 +496,10 @@ label.open:hover > .fold-ctrl {
 
 /* Largeur < 600px : sur une colonne */
 @media (max-width: 599px) {
+  .calendar-container {
+    padding: 0 4px;
+  }
+
   .calendar,
   .calendar.equal {
     grid-template-columns: 1fr;
@@ -503,7 +507,9 @@ label.open:hover > .fold-ctrl {
     column-gap: 0;
     row-gap: 0;
     font-size: 1rem;
+    padding: 6px;
     padding-bottom: 128px;
+    background-color: #fff;
   }
 
   .day {
@@ -514,7 +520,7 @@ label.open:hover > .fold-ctrl {
     display: none;
   }
 
-  .day:has(.seance:not(.hidden)) {
+  .day:not(.past):has(.seance:not(.hidden)) {
     /* display: block; */
     display: flex;
     background-color: transparent;
@@ -666,162 +672,6 @@ label.open:hover > .fold-ctrl {
     print-color-adjust: exact !important;
   }
 }
-
-/*
-@media print {
-  @page {
-    size: A3 portrait;
-  }
-
-  header {
-    display: none !important;
-  }
-
-  aside {
-    display: none;
-  }
-
-  #offcanvas {
-    display: none;
-  }
-
-  .workarea-container {
-    margin-left: 0 !important;
-  }
-
-  .container {
-    margin: 0;
-  }
-
-  .fixed > .scrollable {
-    overflow: visible;
-  }
-
-  .calendar {
-    font-size: 9pt;
-    line-height: 11.5pt;
-    grid-template-columns: 1fr 0fr 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 0;
-    row-gap: 0;
-  }
-
-  .day {
-    border-collapse: collapse;
-    width: 0;
-    border-bottom: solid 0.25pt #ccc;
-  }
-
-  .label-today {
-    display: none;
-  }
-
-  .item:not(.conf) > .titre {
-    color: #036;
-  }
-
-  .day:not(:nth-child(7n)) {
-    border-right: solid 0.25pt #ccc;
-  }
-
-  .seance {
-    padding: 2mm;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  .day:not(.header):not(:has(.seance:not(.cancelled))) {
-    visibility: hidden;
-    height: 0;
-  }
-
-  .seance:not(:last-child)::after {
-    position: absolute;
-    display: block;
-    height: 0;
-    width: 4mm;
-    border: none;
-    border-top: solid 0.25pt #ccc;
-    content: "";
-    bottom: 0;
-    left: 0;
-  }
-
-  .days-to {
-    display: none !important;
-  }
-
-  .gap-warning,
-  .gap2-warning,
-  .theorique,
-  svg {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .closing-day {
-    padding: 0;
-    visibility: hidden;
-  }
-
-  .sous-cycle {
-    font-size: 8pt;
-    line-height: 9.5pt;
-  }
-
-  .passage {
-    font-size: 8pt;
-    line-height: 9.5pt;
-  }
-
-  .heure-fin {
-    font-size: 8pt;
-    line-height: 9.5pt;
-  }
-
-  .gap {
-    font-size: 8pt;
-    line-height: 9.5pt;
-  }
-
-  .item-ext {
-    color: #999;
-    font-size: 8pt;
-    line-height: 9.5pt;
-  }
-
-  .fold-ctrl {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-*/
-/* Ajout pour forcer le changement de layout */
-
-/*
-  .seance {
-    flex-direction: column;
-    padding: 6px;
-  }
-
-  .seance .zone_a {
-    flex: 0 0 auto;
-    flex-wrap: nowrap;
-  }
-
-  .heure {
-    flex: 0 0 auto;
-    margin-right: 0.3rem;
-  }
-
-  .salle {
-    flex: 0 0 auto;
-  }
-
-  .heure-fin {
-    flex: 1 0 auto;
-    text-align: right;
-  }
-}
-*/
 
 /* Autres */
 @media (hover: hover) and (pointer: fine) {
