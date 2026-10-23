@@ -111,6 +111,13 @@ strong {
   background-color: #f7ebbb;
 }
 
+.bloc-lien h3,
+.calendar-container > h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .bloc-lien p {
   margin: 0;
 }
