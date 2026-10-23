@@ -7,7 +7,8 @@
   position: relative;
   width: calc(100vw - var(--vtoolbar-w) - 25px);
   padding: 36px;
-  background-color: #d9d9d9;
+  background-color: #acbcb8;
+  /* background-color: #d9d9d9; */
   margin: 0;
   display: grid;
   column-gap: 3px;
@@ -38,7 +39,8 @@
 }
 
 .day:has(.seance:not(.hidden)) {
-  background-color: #f6f6f6;
+  background-color: #fff;
+  /* background-color: #f6f6f6; */
 }
 
 .day:nth-last-child(-n + 7) .seance:last-child {
@@ -451,7 +453,8 @@ label.open:hover > .fold-ctrl {
 /* Largeur >= 1400px, sur 7 colonnes */
 @media (min-width: 1400px) {
   .seance {
-    padding: 6px 4px;
+    padding: 8px;
+    /* padding: 6px 4px; */
   }
 
   .seance .zone_a {

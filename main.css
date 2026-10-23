@@ -41,8 +41,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* text-align: center; */
-  padding-bottom: 20rem;
 }
 
 .logo {
