@@ -1141,7 +1141,9 @@
                   <label title="Afficher tous les films"
                     ><button
                       class="fold-ctrl"
+                      type="button"
                       aria-label="Afficher tous les films"
+                      aria-expanded="false"
                     ></button
                     >+9</label
                   >
@@ -1246,7 +1248,9 @@
                   <label title="Afficher tous les films"
                     ><button
                       class="fold-ctrl"
+                      type="button"
                       aria-label="Afficher tous les films"
+                      aria-expanded="false"
                     ></button
                     >+3</label
                   >
@@ -1555,7 +1559,9 @@
                   <label title="Afficher tous les films"
                     ><button
                       class="fold-ctrl"
+                      type="button"
                       aria-label="Afficher tous les films"
+                      aria-expanded="false"
                     ></button
                     >+3</label
                   >
@@ -2444,7 +2450,9 @@
                   <label title="Afficher tous les films"
                     ><button
                       class="fold-ctrl"
+                      type="button"
                       aria-label="Afficher tous les films"
+                      aria-expanded="false"
                     ></button
                     >+1</label
                   >
@@ -4258,7 +4266,9 @@
                   <label title="Afficher tous les films"
                     ><button
                       class="fold-ctrl"
+                      type="button"
                       aria-label="Afficher tous les films"
+                      aria-expanded="false"
                     ></button
                     >+2</label
                   >
@@ -5732,6 +5742,9 @@
       hidePastCalendarDays();
 
       function toggleFoldItems(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
         const button = event.currentTarget;
         const itemsBlock = button.closest(".items");
         if (!itemsBlock) return;
@@ -5739,7 +5752,8 @@
         itemsBlock.querySelectorAll(".item.fold").forEach((item) => {
           item.classList.toggle("open");
         });
-        button.closest("label").classList.toggle("open");
+        const isOpen = button.closest("label").classList.toggle("open");
+        button.setAttribute("aria-expanded", String(isOpen));
       }
 
       document.addEventListener("DOMContentLoaded", () => {
