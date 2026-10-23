@@ -130,8 +130,9 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-content: stretch;
-  cursor: pointer;
   transition: 0.1s;
+  text-decoration: none;
+  color: inherit;
 }
 
 .seance.hidden {
@@ -821,8 +822,9 @@ label.open:hover > .fold-ctrl {
 
 /* Autres */
 @media (hover: hover) and (pointer: fine) {
-  .seance:hover {
+  a.seance:hover {
     background-color: var(--cf-turquoise-light-1, #fff);
+    cursor: pointer;
     /* background-color: #fff; */
   }
 
