@@ -16,10 +16,18 @@ function initializeCalendarSwipe() {
   let gesture = null;
   let suppressClick = false;
   let clickTimer;
+  let calendarWidth;
 
   function updatePosition(drag = 0) {
     const offset = -current * days[0].getBoundingClientRect().width + drag;
     calendar.style.setProperty("--calendar-offset", `${offset}px`);
+  }
+
+  function updateHeight() {
+    const style = getComputedStyle(calendar);
+    const padding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+    const height = days[current].getBoundingClientRect().height + padding;
+    calendar.style.setProperty("--calendar-height", `${height}px`);
   }
 
   function showDay(index) {
@@ -35,6 +43,7 @@ function initializeCalendarSwipe() {
     next.disabled = current === days.length - 1;
     position.textContent = `${days[current].querySelector(".date").textContent.trim()} (${current + 1}/${days.length})`;
     updatePosition();
+    updateHeight();
   }
 
   function setMobileMode() {
@@ -49,6 +58,8 @@ function initializeCalendarSwipe() {
         day.inert = false;
       });
       calendar.style.removeProperty("--calendar-offset");
+      calendar.style.removeProperty("--calendar-height");
+      calendarWidth = undefined;
     }
   }
 
@@ -128,9 +139,18 @@ function initializeCalendarSwipe() {
     }
   }, true);
   mobile.addEventListener("change", setMobileMode);
-  new ResizeObserver(() => {
-    if (mobile.matches && !gesture) updatePosition();
-  }).observe(calendar);
+  const resizeObserver = new ResizeObserver((entries) => {
+    if (!mobile.matches) return;
+    for (const entry of entries) {
+      if (entry.target === calendar && entry.contentRect.width !== calendarWidth) {
+        calendarWidth = entry.contentRect.width;
+        if (!gesture) updatePosition();
+      }
+      if (entry.target === days[current]) updateHeight();
+    }
+  });
+  resizeObserver.observe(calendar);
+  days.forEach((day) => resizeObserver.observe(day));
   setMobileMode();
 }
 initializeCalendarSwipe();
