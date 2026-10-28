@@ -553,6 +553,69 @@ label.open:hover > .fold-ctrl {
   }
 }
 
+@media screen and (max-width: 599px) {
+  .calendar-navigation:not([hidden]) {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 6px;
+    background-color: #fff;
+  }
+
+  .calendar-navigation button {
+    border: 1px solid var(--calendar-color-1);
+    border-radius: 4px;
+    padding: 8px;
+    color: var(--calendar-color-1);
+    background-color: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .calendar-navigation button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  .calendar-position {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .calendar.calendar-carousel {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow: clip;
+    padding-right: 0;
+    padding-left: 0;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .calendar-carousel > .day:not(.past):has(.seance:not(.hidden)) {
+    overflow: clip;
+    padding-right: 6px;
+    padding-left: 6px;
+    transform: translateX(var(--calendar-offset, 0px));
+    transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .calendar-carousel.calendar-dragging > .day:not(.past):has(.seance:not(.hidden)) {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendar-carousel > .day {
+    transition: none !important;
+  }
+}
+
 @media (max-width: 499px) {
   .salle {
     order: 1;
@@ -587,6 +650,7 @@ label.open:hover > .fold-ctrl {
   #offcanvas,
   .tickets-container,
   .days-to,
+  .calendar-navigation,
   .cancelled,
   .detached {
     display: none !important;

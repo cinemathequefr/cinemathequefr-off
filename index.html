@@ -194,7 +194,16 @@
           Calendrier mis à jour le 28 octobre à 10h14.
         </p>
 
-        <div class="calendar">
+        <nav class="calendar-navigation" aria-label="Navigation du calendrier" hidden>
+          <button type="button" class="calendar-previous" aria-controls="calendar">
+            Jour précédent
+          </button>
+          <span class="calendar-position" aria-live="polite" aria-atomic="true" tabindex="-1"></span>
+          <button type="button" class="calendar-next" aria-controls="calendar">
+            Jour suivant
+          </button>
+        </nav>
+        <div class="calendar" id="calendar">
           <div class="day header s-kW2GpBcly_rY">
             <span class="s-kW2GpBcly_rY">Lundi</span>
           </div>
@@ -4303,6 +4312,7 @@
         calendar.classList.add("calendar-ready");
       }
       hidePastCalendarDays();
+
       function toggleFoldItems(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -4323,5 +4333,6 @@
           });
       });
     </script>
+    <script src="/assets/swipe.js"></script>
   </body>
 </html>
