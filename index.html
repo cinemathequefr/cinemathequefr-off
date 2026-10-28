@@ -16,15 +16,15 @@
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&family=Inter:wght@300;400;600&family=Inter+Tight:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link href="/assets/main.css" rel="stylesheet" />
-    <link href="/assets/calendrier.css" rel="stylesheet" />
+    <link href="./assets/main.css" rel="stylesheet" />
+    <link href="./assets/calendrier.css" rel="stylesheet" />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/assets/favicon.png"
+      href="./assets/favicon.png"
     />
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -194,11 +194,24 @@
           Calendrier mis à jour le 28 octobre à 10h14.
         </p>
 
-        <nav class="calendar-navigation" aria-label="Navigation du calendrier" hidden>
-          <button type="button" class="calendar-previous" aria-controls="calendar">
+        <nav
+          class="calendar-navigation"
+          aria-label="Navigation du calendrier"
+          hidden
+        >
+          <button
+            type="button"
+            class="calendar-previous"
+            aria-controls="calendar"
+          >
             Jour précédent
           </button>
-          <span class="calendar-position" aria-live="polite" aria-atomic="true" tabindex="-1"></span>
+          <span
+            class="calendar-position"
+            aria-live="polite"
+            aria-atomic="true"
+            tabindex="-1"
+          ></span>
           <button type="button" class="calendar-next" aria-controls="calendar">
             Jour suivant
           </button>
@@ -4333,6 +4346,6 @@
           });
       });
     </script>
-    <script src="/assets/swipe.js"></script>
+    <script src="./assets/swipe.js"></script>
   </body>
 </html>
