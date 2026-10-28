@@ -66,13 +66,11 @@ h3 {
 section.info {
   max-width: 80ch;
   margin: 0 auto 0 auto;
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
+  /* font-size: 1.125rem; */
   line-height: 1.35;
   padding: 12px;
 }
-/* 
-section.calendar-container {
-} */
 
 article,
 .bloc-lien {
