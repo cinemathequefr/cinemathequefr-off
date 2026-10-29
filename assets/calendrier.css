@@ -555,7 +555,7 @@ label.open:hover > .fold-ctrl {
 
 @media screen and (max-width: 599px) {
   .calendar-container:has(.calendar-carousel) {
-    /* Preserve the scroll offset when a taller day expands the calendar. */
+    /* Preserve the scroll offset when calendar content changes. */
     overflow-anchor: none;
   }
 
@@ -574,17 +574,16 @@ label.open:hover > .fold-ctrl {
   .calendar-viewport.is-carousel {
     position: relative;
     overflow: clip;
+    background-color: #fff;
   }
 
   .calendar.calendar-carousel {
     display: flex;
-    align-items: start;
-    height: var(--calendar-height, auto);
+    align-items: stretch;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
     touch-action: pan-y pinch-zoom;
-    transition: height 180ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .calendar-carousel > .day:not(.past):has(.seance:not(.hidden)) {
@@ -592,6 +591,7 @@ label.open:hover > .fold-ctrl {
     overflow: clip;
     padding-right: 6px;
     padding-left: 6px;
+    background-color: #fff;
   }
 
   .calendar-carousel > .day > .date {
@@ -599,10 +599,10 @@ label.open:hover > .fold-ctrl {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .calendar.calendar-carousel {
-    transition: none !important;
-  }
+html.calendar-swiping {
+  overflow-y: hidden;
+  overscroll-behavior-y: none;
+  scrollbar-gutter: stable;
 }
 
 @media (max-width: 499px) {

@@ -16,12 +16,19 @@ function initializeCalendarSwipe() {
   const mobile = window.matchMedia("screen and (max-width: 599px)");
   let embla;
   let current = 0;
+  let pointerDown = false;
 
-  function updateHeight() {
-    const style = getComputedStyle(calendar);
-    const padding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
-    const height = days[current].getBoundingClientRect().height + padding;
-    calendar.style.setProperty("--calendar-height", `${height}px`);
+  function lockScroll() {
+    document.documentElement.classList.add("calendar-swiping");
+  }
+
+  function unlockScroll() {
+    document.documentElement.classList.remove("calendar-swiping");
+  }
+
+  function resetGesture() {
+    pointerDown = false;
+    unlockScroll();
   }
 
   function updateDay(api) {
@@ -39,7 +46,6 @@ function initializeCalendarSwipe() {
       "aria-label",
       `${date}. Utilisez les flèches gauche et droite pour changer de jour.`,
     );
-    updateHeight();
   }
 
   function setMobileMode() {
@@ -57,9 +63,23 @@ function initializeCalendarSwipe() {
         },
       });
       embla.on("select", updateDay);
-      embla.on("reInit", updateDay);
+      embla.on("pointerDown", () => {
+        pointerDown = true;
+      });
+      embla.on("pointerUp", () => {
+        pointerDown = false;
+      });
+      embla.on("scroll", () => {
+        if (pointerDown) lockScroll();
+      });
+      embla.on("settle", unlockScroll);
+      embla.on("reInit", (api) => {
+        resetGesture();
+        updateDay(api);
+      });
       updateDay(embla);
     } else {
+      resetGesture();
       if (embla) {
         embla.destroy();
         embla = undefined;
@@ -70,9 +90,21 @@ function initializeCalendarSwipe() {
       days.forEach((day) => {
         day.inert = false;
       });
-      calendar.style.removeProperty("--calendar-height");
     }
   }
+
+  document.addEventListener(
+    "touchmove",
+    (event) => {
+      // Embla prevents the move only after recognizing a horizontal drag.
+      if (embla && pointerDown && event.defaultPrevented) lockScroll();
+    },
+    { passive: true },
+  );
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) resetGesture();
+  });
 
   position.addEventListener("keydown", (event) => {
     if (!embla) return;
@@ -85,12 +117,6 @@ function initializeCalendarSwipe() {
     }
   });
 
-  const resizeObserver = new ResizeObserver((entries) => {
-    if (embla && entries.some((entry) => entry.target === days[current])) {
-      updateHeight();
-    }
-  });
-  days.forEach((day) => resizeObserver.observe(day));
   mobile.addEventListener("change", setMobileMode);
   setMobileMode();
 }
