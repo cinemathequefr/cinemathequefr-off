@@ -579,7 +579,8 @@ label.open:hover > .fold-ctrl {
 
   .calendar.calendar-carousel {
     display: flex;
-    align-items: stretch;
+    align-items: start;
+    height: var(--calendar-height, auto);
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
@@ -592,6 +593,15 @@ label.open:hover > .fold-ctrl {
     padding-right: 6px;
     padding-left: 6px;
     background-color: #fff;
+    transform: translateY(var(--calendar-inactive-offset, 0px));
+  }
+
+  .calendar-carousel > .day.calendar-current:not(.past):has(.seance:not(.hidden)) {
+    transform: none;
+  }
+
+  .calendar-carousel > .day.calendar-outgoing:not(.past):has(.seance:not(.hidden)) {
+    transform: translateY(var(--calendar-outgoing-offset, 0px));
   }
 
   .calendar-carousel > .day > .date {
