@@ -127,6 +127,10 @@ strong {
   font-size: inherit;
 }
 
+.changed {
+  background-color: #e9f76a;
+}
+
 /* .bloc-lien:hover > h2 {
 } */
 
