@@ -194,28 +194,15 @@
           Calendrier mis à jour le 28 octobre à 10h14.
         </p>
 
-        <nav
-          class="calendar-navigation"
-          aria-label="Navigation du calendrier"
+        <h3
+          class="calendar-position"
+          aria-live="polite"
+          aria-atomic="true"
+          aria-keyshortcuts="ArrowLeft ArrowRight"
+          tabindex="0"
           hidden
-        >
-          <button
-            type="button"
-            class="calendar-previous"
-            aria-controls="calendar"
-          >
-            Jour précédent
-          </button>
-          <span
-            class="calendar-position"
-            aria-live="polite"
-            aria-atomic="true"
-            tabindex="-1"
-          ></span>
-          <button type="button" class="calendar-next" aria-controls="calendar">
-            Jour suivant
-          </button>
-        </nav>
+        ></h3>
+        <div class="calendar-viewport">
         <div class="calendar" id="calendar">
           <div class="day header s-kW2GpBcly_rY">
             <span class="s-kW2GpBcly_rY">Lundi</span>
@@ -4294,6 +4281,7 @@
           <div class="date s-kW2GpBcly_rY">dim 6 déc</div>
         </div>
         --></div>
+        </div>
         <!-- FIN CALENDRIER -->
       </section>
     </main>
@@ -4346,6 +4334,7 @@
           });
       });
     </script>
+    <script src="https://unpkg.com/embla-carousel@8.6.0/embla-carousel.umd.js"></script>
     <script src="./assets/swipe.js"></script>
   </body>
 </html>
