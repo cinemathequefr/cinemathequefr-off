@@ -9,6 +9,13 @@ The `div.calendar` element contains a calendar, with a 7 cols layout for desktop
 
 The JS code should minimize the dependencies. To use common external libraries, you can find an online (CDN) source that will be served to the user. You can use modern JS (e. g. modules) when widely enough supported.
 
+## Core Constraint: Radical simplicity
+
+Resist the tendency to introduce unnecessary abstractions, boilerplate, or dependencies.
+
+1. **Justify Every Addition:** Every extra file, function, dependency, or architectural layer must solve a concrete, present need. If you cannot explain its practical value, leave it out.
+2. **Default to Less:** Choose the simplest established solution. Before finishing, review your work and delete any indirection, duplication, or speculative flexibility that isn't strictly required.
+
 ## Next task
 
 When the calendar is display for mobile (touch device) on one column (see relevant breakpoint in the css), instead of having the user make a long scroll to the browse the later days, I want to implement a swipe mechanism.
