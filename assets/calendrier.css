@@ -674,17 +674,18 @@ label.open:hover > .fold-ctrl {
 }
 
 /* Autres */
-@media (hover: hover) and (pointer: fine) {
-  a.seance:hover {
-    background-color: var(--cf-turquoise-light-1, #fff);
-    cursor: pointer;
-    /* background-color: #fff; */
-  }
-
-  .seance.theorique:hover {
-    background-color: #e7e7f3;
-  }
+/* @media (hover: hover) and (pointer: fine) { */
+a.seance:hover,
+a.seance:active {
+  background-color: var(--cf-turquoise-light-1, #fff);
+  cursor: pointer;
 }
+
+.seance.theorique:hover,
+.seance.theorique:active {
+  background-color: #e7e7f3;
+}
+/* } */
 
 .js .calendar:not(.calendar-ready) {
   visibility: hidden;
