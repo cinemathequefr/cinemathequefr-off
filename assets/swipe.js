@@ -145,11 +145,6 @@ function initializeCalendarSwipe() {
   function updateDay(api) {
     if (!mobile.matches) return;
     const selected = api.selectedSnap();
-    // Keep momentum-driven swipes to at most one day.
-    if (pointerDown && Math.abs(selected - current) > 1) {
-      api.goTo(current + Math.sign(selected - current));
-      return;
-    }
     if (selected !== current) showDay(selected);
     days.forEach((day, index) => {
       day.inert = index !== current;
@@ -175,15 +170,24 @@ function initializeCalendarSwipe() {
       slides: days,
       startSnap: current,
       loop: false,
-      dragFree: "snap",
-      duration: 25,
       breakpoints: {
         "(prefers-reduced-motion: reduce)": { duration: 0 },
       },
     });
     embla.on("select", updateDay);
-    embla.on("pointerdown", () => {
+    embla.on("pointerdown", (api) => {
       pointerDown = true;
+      // Interrupting a button animation should start from the visible day.
+      const progress = api.scrollProgress();
+      const snaps = api.snapList();
+      const nearest = snaps.reduce(
+        (best, snap, index) =>
+          Math.abs(snap - progress) < Math.abs(snaps[best] - progress)
+            ? index
+            : best,
+        0,
+      );
+      if (nearest !== api.selectedSnap()) api.goTo(nearest);
     });
     embla.on("pointerup", resetGesture);
     embla.on("scroll", () => {
