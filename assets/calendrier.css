@@ -571,7 +571,9 @@ label.open:hover > .fold-ctrl {
     background-color: #fff;
     font-size: 1.0625rem;
     font-weight: 600;
-    transition: background-color 0.2s, box-shadow 0.2s;
+    transition:
+      background-color 0.2s,
+      box-shadow 0.2s;
   }
 
   .calendar-position.is-docked:not([hidden]) {
@@ -598,7 +600,9 @@ label.open:hover > .fold-ctrl {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s, visibility 0s linear 0.2s;
+    transition:
+      opacity 0.2s,
+      visibility 0s linear 0.2s;
   }
 
   .calendar-position.is-docked .calendar-position-button {
