@@ -1,7 +1,10 @@
 function initializeCalendarSwipe() {
   const calendar = document.querySelector(".calendar");
   const viewport = document.querySelector(".calendar-viewport");
-  const position = document.querySelector(".calendar-position");
+  const position =
+    document.querySelector(
+      ".calendar-position",
+    ); /* En-tête sticky du calendrier */
   const days = Array.from(
     calendar.querySelectorAll(
       ":scope > .day[data-date]:not(.past):has(.seance:not(.hidden))",
@@ -21,15 +24,20 @@ function initializeCalendarSwipe() {
   let pointerDown = false;
 
   function calendarTop() {
-    return viewport.getBoundingClientRect().top +
-      parseFloat(getComputedStyle(calendar).paddingTop);
+    return (
+      viewport.getBoundingClientRect().top +
+      parseFloat(getComputedStyle(calendar).paddingTop)
+    );
   }
 
   const isCarouselActive = () => embla && mobile.matches;
 
   // Distance between the calendar top and the bottom of the sticky header.
   function updateInactiveOffset() {
-    const offset = Math.max(0, position.getBoundingClientRect().bottom - calendarTop());
+    const offset = Math.max(
+      0,
+      position.getBoundingClientRect().bottom - calendarTop(),
+    );
     calendar.style.setProperty("--calendar-inactive-offset", `${offset}px`);
   }
 
@@ -43,8 +51,12 @@ function initializeCalendarSwipe() {
       outgoing?.getBoundingClientRect().height ?? 0,
     );
     // Keep enough scroll range to align a short day below the sticky header.
-    const minimumHeight = window.innerHeight - position.getBoundingClientRect().height + paddingTop;
-    const height = Math.max(contentHeight + paddingTop + paddingBottom, minimumHeight);
+    const minimumHeight =
+      window.innerHeight - position.getBoundingClientRect().height + paddingTop;
+    const height = Math.max(
+      contentHeight + paddingTop + paddingBottom,
+      minimumHeight,
+    );
     calendar.style.setProperty("--calendar-height", `${height}px`);
   }
 
@@ -84,11 +96,15 @@ function initializeCalendarSwipe() {
     updateHeight();
 
     // Keep the vertical scroll position, clamped to the new day's top.
-    const top = window.scrollY + calendarTop() - position.getBoundingClientRect().bottom;
+    const top =
+      window.scrollY + calendarTop() - position.getBoundingClientRect().bottom;
     window.scrollTo(window.scrollX, Math.min(window.scrollY, top));
 
     if (outgoing) {
-      calendar.style.setProperty("--calendar-outgoing-offset", `${previousTop - calendarTop()}px`);
+      calendar.style.setProperty(
+        "--calendar-outgoing-offset",
+        `${previousTop - calendarTop()}px`,
+      );
       outgoing.classList.add("calendar-outgoing");
     }
     updateInactiveOffset();
@@ -185,9 +201,13 @@ function initializeCalendarSwipe() {
     if (document.hidden) resetGesture();
   });
 
-  window.addEventListener("scroll", () => {
-    if (isCarouselActive()) updateInactiveOffset();
-  }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (isCarouselActive()) updateInactiveOffset();
+    },
+    { passive: true },
+  );
 
   window.addEventListener("resize", () => {
     if (isCarouselActive()) updateLayout();
@@ -206,7 +226,8 @@ function initializeCalendarSwipe() {
 
   const resizeObserver = new ResizeObserver((entries) => {
     const relevant = [position, days[current], outgoing];
-    if (embla && entries.some((entry) => relevant.includes(entry.target))) updateLayout();
+    if (embla && entries.some((entry) => relevant.includes(entry.target)))
+      updateLayout();
   });
   resizeObserver.observe(position, { box: "border-box" });
   days.forEach((day) => resizeObserver.observe(day, { box: "border-box" }));

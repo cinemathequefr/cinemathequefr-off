@@ -497,7 +497,8 @@ label.open:hover > .fold-ctrl {
 /* Largeur < 600px : sur une colonne */
 @media (max-width: 599px) {
   .calendar-container {
-    padding: 0 4px;
+    padding: 0;
+    /* padding: 0 4px; */
   }
 
   .calendar,
@@ -564,11 +565,14 @@ label.open:hover > .fold-ctrl {
     top: 0;
     z-index: 2;
     display: block;
-    padding: 8px 6px;
-    background-color: #fff;
+    padding: 18px 6px;
+    /* padding: 8px 6px; */
     text-align: center;
-    font-size: 1.063rem;
+    font-size: 1.0625rem;
     font-weight: 600;
+    background-color: #eeefee;
+
+    box-shadow: 0 2px 2px 0 #0006;
   }
 
   .calendar-viewport.is-carousel {
@@ -608,6 +612,12 @@ label.open:hover > .fold-ctrl {
 
   .calendar-carousel > .day > .date {
     display: none;
+  }
+
+  .heure,
+  .salle {
+    font-size: 0.9125em;
+    font-weight: 600;
   }
 }
 
