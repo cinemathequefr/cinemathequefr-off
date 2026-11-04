@@ -193,14 +193,28 @@
         <p style="font-size: 0.9125rem">
           Calendrier mis à jour le 3 novembre à 16h45.
         </p>
-        <h3
+        <div
           class="calendar-position"
           aria-live="polite"
           aria-atomic="true"
           aria-keyshortcuts="ArrowLeft ArrowRight"
           tabindex="0"
           hidden
-        ></h3>
+        >
+          <button class="calendar-position-button" type="button" aria-label="Reculer de 7 jours">
+            -7j
+          </button>
+          <button class="calendar-position-button" type="button" aria-label="Reculer d’un jour">
+            -1j
+          </button>
+          <span class="calendar-position-date"></span>
+          <button class="calendar-position-button" type="button" aria-label="Avancer d’un jour">
+            +1j
+          </button>
+          <button class="calendar-position-button" type="button" aria-label="Avancer de 7 jours">
+            +7j
+          </button>
+        </div>
         <div class="calendar-viewport">
           <div class="calendar" id="calendar">
             <div class="day header">

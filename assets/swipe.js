@@ -112,7 +112,7 @@ function initializeCalendarSwipe() {
 
   function updateLabel() {
     const date = days[current].querySelector(".date").textContent.trim();
-    position.textContent = date;
+    position.querySelector(".calendar-position-date").textContent = date;
     position.setAttribute(
       "aria-label",
       `${date}. Utilisez les flèches gauche et droite pour changer de jour.`,
@@ -214,7 +214,7 @@ function initializeCalendarSwipe() {
   });
 
   position.addEventListener("keydown", (event) => {
-    if (!embla) return;
+    if (!embla || event.target !== position) return;
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       embla.scrollPrev();
