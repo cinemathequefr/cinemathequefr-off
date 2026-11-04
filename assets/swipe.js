@@ -35,9 +35,18 @@ function initializeCalendarSwipe() {
 
   // Distance between the calendar top and the bottom of the sticky header.
   function updateInactiveOffset() {
+    const header = position.getBoundingClientRect();
+    const calendarBottom = viewport.getBoundingClientRect().bottom;
+    const visible = header.bottom > 0 && header.top < window.innerHeight;
+    position.classList.toggle(
+      "is-docked",
+      visible &&
+        (header.top <= 0 ||
+          (calendarBottom > 0 && calendarBottom <= window.innerHeight)),
+    );
     const offset = Math.max(
       0,
-      position.getBoundingClientRect().bottom - calendarTop(),
+      header.bottom - calendarTop(),
     );
     calendar.style.setProperty("--calendar-inactive-offset", `${offset}px`);
   }
@@ -196,6 +205,7 @@ function initializeCalendarSwipe() {
     viewport.classList.remove("is-carousel");
     calendar.classList.remove("calendar-carousel");
     position.hidden = true;
+    position.classList.remove("is-docked");
     days.forEach((day) => {
       day.inert = false;
       day.classList.remove("calendar-current", "calendar-outgoing");

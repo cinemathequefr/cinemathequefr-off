@@ -567,11 +567,16 @@ label.open:hover > .fold-ctrl {
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 8px 6px;
+    padding: 18px 6px;
+    background-color: #fff;
     font-size: 1.0625rem;
     font-weight: 600;
-    background-color: #eeefee;
-    box-shadow: 0 2px 2px 0 #0006;
+    transition: background-color 0.2s, box-shadow 0.2s;
+  }
+
+  .calendar-position.is-docked:not([hidden]) {
+    background-color: #f6f6f6;
+    box-shadow: 0 2px 4px 0 #0003;
   }
 
   .calendar-position-date {
@@ -590,11 +595,29 @@ label.open:hover > .fold-ctrl {
     font: inherit;
     font-size: 0.75rem;
     cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s, visibility 0s linear 0.2s;
   }
 
-  .calendar-position-button:disabled {
+  .calendar-position.is-docked .calendar-position-button {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .calendar-position.is-docked .calendar-position-button:disabled {
     opacity: 0.35;
     cursor: default;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .calendar-position:not([hidden]),
+    .calendar-position-button {
+      transition: none;
+    }
   }
 
   .calendar-position-button:not(:disabled):active {
@@ -673,109 +696,6 @@ html.calendar-swiping {
   .salle {
     order: 2;
     text-align: left;
-  }
-}
-
-/* Version imprimée */
-
-@media print {
-  @page {
-    size: A3 portrait;
-  }
-
-  body > div > *:not(#workarea-container),
-  #offcanvas,
-  .tickets-container,
-  .days-to,
-  .calendar-position,
-  .cancelled,
-  .detached {
-    display: none !important;
-  }
-
-  #workarea-container {
-    margin: 0 !important;
-  }
-
-  /* TODO: exempter aussi l'élément `label` */
-  main *:not(.theorique) {
-    background-color: transparent !important;
-  }
-
-  .calendar {
-    font-size: 9pt;
-    line-height: 11.5pt;
-    grid-template-columns: 1fr 0fr 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 0;
-    row-gap: 0;
-  }
-
-  .day {
-    border-collapse: collapse;
-    width: 0;
-    border-bottom: solid 0.25pt #ccc;
-  }
-
-  .day:not(:nth-child(7n)) {
-    border-right: solid 0.25pt #ccc;
-  }
-
-  .seances:not(:has(.seance:not(:is(.cancelled, .detached)))) {
-    visibility: hidden;
-    height: 0;
-    margin: 0 !important;
-  }
-
-  .seance {
-    padding: 2mm;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Séance sans lien */
-  div.seance {
-    background-color: #eee;
-  }
-
-  .seance:not(:last-child)::after {
-    position: absolute;
-    display: block;
-    height: 0;
-    width: 4mm;
-    border: none;
-    border-top: solid 0.25pt #ccc;
-    content: "";
-    bottom: 0;
-    left: 0;
-  }
-
-  .fold-ctrl,
-  .theorique,
-  .gap-warning,
-  .gap2-warning,
-  .cancelled {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .seance .salle svg,
-  .seance .salle svg * {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .seance {
-    padding: 2mm;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  .gap-warning,
-  .gap2-warning,
-  .theorique,
-  svg {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
   }
 }
 
