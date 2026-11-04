@@ -57,7 +57,8 @@ h1 {
 }
 
 h2,
-h3 {
+h3,
+h4 {
   margin: 0;
   padding: 0;
   font-weight: 600;
@@ -75,6 +76,11 @@ section.info {
 article,
 .bloc-lien {
   padding: 12px;
+}
+
+.bloc-lien {
+  border: solid 3px #ccc;
+  margin: 6px 0;
 }
 
 p {
@@ -120,12 +126,12 @@ strong {
   margin: 0;
 }
 
-.bloc-lien > h3 {
+/* .bloc-lien > h3 {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
   font-size: inherit;
-}
+} */
 
 .changed {
   background-color: #e9f76a;
