@@ -48,11 +48,24 @@
       focusable="false"
       style="position: absolute; width: 0; height: 0; overflow: hidden"
     >
-      <symbol id="ticket" viewBox="0 0 16 16">
+      <symbol id="ticket" viewBox="0 0 24 24">
+        <g fill="none">
+          <path
+            d="M22 5v3.837a3.5 3.5 0 0 0 0 6.326V19H2v-3.837a3.5 3.5 0 0 0 0-6.326V5z"
+          />
+          <path
+            stroke="currentColor"
+            stroke-width="2"
+            d="M22 5v3.837a3.5 3.5 0 0 0 0 6.326V19H2v-3.837a3.5 3.5 0 0 0 0-6.326V5z"
+          />
+        </g>
+      </symbol>
+
+      <!-- <symbol id="ticket" viewBox="0 0 16 16">
         <path
           d="M9.437 1.942a.6.6 0 0 0-.83.018L1.991 8.576a.6.6 0 0 0 0 .849l.926.926l.024.003c.03 0 .07-.011.108-.036a1.9 1.9 0 0 1 2.635 2.635a.2.2 0 0 0-.036.108q0 .019.003.023l.904.905a.6.6 0 0 0 .862-.013l6.599-7.012a.6.6 0 0 0-.032-.853l-.886-.813h-.003a.1.1 0 0 0-.043 0a.3.3 0 0 0-.147.083a1.9 1.9 0 1 1-2.8-2.568a.3.3 0 0 0 .069-.154a.1.1 0 0 0-.004-.045zm-1.395-.548a1.4 1.4 0 0 1 1.936-.042l.733.673c.219.2.28.473.26.706c-.021.23-.122.455-.278.624a1.1 1.1 0 1 0 1.622 1.487c.155-.17.37-.29.597-.331a.84.84 0 0 1 .726.197l.887.813a1.4 1.4 0 0 1 .073 1.991L8 14.524a1.4 1.4 0 0 1-2.01.03l-.904-.904c-.347-.347-.263-.847-.067-1.14a1.1 1.1 0 0 0-1.525-1.525c-.295.195-.794.279-1.141-.069l-.926-.926a1.4 1.4 0 0 1 0-1.98z"
         ></path>
-      </symbol>
+      </symbol> -->
     </svg>
     <header>
       <svg
@@ -196,61 +209,16 @@
         <div
           class="calendar-position"
           aria-keyshortcuts="ArrowLeft ArrowRight"
+          aria-label="Calendrier"
+          role="group"
           tabindex="0"
           hidden
         >
-          <button
-            class="calendar-position-button"
-            type="button"
-            data-days="-7"
-            aria-label="Reculer de 7 jours"
-            disabled
-          >
-            <svg viewBox="0 0 24 24">
-              <path
-                d="m11 18-6-6 6-6 1.4 1.4L7.825 12l4.575 4.6zm6.6 0-6-6 6-6L19 7.4 14.425 12 19 16.6z"
-              />
-            </svg>
-          </button>
-          <button
-            class="calendar-position-button"
-            type="button"
-            data-days="-1"
-            aria-label="Reculer d'un jour"
-            disabled
-          >
-            <svg viewBox="0 0 24 24">
-              <path d="m14 18-6-6 6-6 1.4 1.4-4.6 4.6 4.6 4.6z" />
-            </svg>
-          </button>
           <span
             class="calendar-position-date"
             aria-live="polite"
             aria-atomic="true"
           ></span>
-          <button
-            class="calendar-position-button"
-            type="button"
-            data-days="1"
-            aria-label="Avancer d'un jour"
-            disabled
-          >
-            <svg viewBox="0 0 24 24">
-              <path d="M12.6 12 8 7.4 9.4 6l6 6-6 6L8 16.6z" />
-            </svg>
-          </button>
-          <button
-            class="calendar-position-button"
-            type="button"
-            data-days="7"
-            aria-label="Avancer de 7 jours"
-            disabled
-            ><svg viewBox="0 0 24 24">
-              <path
-                d="M9.575 12 5 7.4 6.4 6l6 6-6 6L5 16.6zm6.6 0L11.6 7.4 13 6l6 6-6 6-1.4-1.4z"
-              />
-            </svg>
-          </button>
         </div>
         <div class="calendar-viewport">
           <div class="calendar" id="calendar">
@@ -12842,8 +12810,7 @@
           });
       });
     </script>
-    <script src="https://unpkg.com/embla-carousel@9.0.0-rc04/embla-carousel.umd.js"></script>
-    <!-- <script src="./assets/swipe.min.js"></script> -->
+    <script src="https://unpkg.com/embla-carousel@8.6.0/embla-carousel.umd.js"></script>
     <script src="./assets/swipe.js"></script>
   </body>
 </html>

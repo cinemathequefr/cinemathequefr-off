@@ -556,7 +556,6 @@ label.open:hover > .fold-ctrl {
 
 @media screen and (max-width: 599px) {
   .calendar-container:has(.calendar-carousel) {
-    /* Preserve the scroll offset when calendar content changes. */
     overflow-anchor: none;
   }
 
@@ -566,105 +565,38 @@ label.open:hover > .fold-ctrl {
     z-index: 2;
     display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
     padding: 18px 6px;
     background-color: #fff;
     font-size: 1.0625rem;
     font-weight: 600;
-    transition:
-      background-color 0.2s,
-      box-shadow 0.2s;
-  }
-
-  .calendar-position.is-docked:not([hidden]) {
-    background-color: #f6f6f6;
-    box-shadow: 0 2px 4px 0 #0003;
   }
 
   .calendar-position-date {
-    flex: 1;
     text-align: center;
   }
 
-  .calendar-position-button {
-    flex: 0 0 42px;
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    font-size: 0.75rem;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    padding: 6px;
-    /* border-radius: 100%; */
-    transition:
-      opacity 0.2s,
-      visibility 0s linear 0.2s;
-  }
-
-  .calendar-position.is-docked .calendar-position-button {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition-delay: 0s;
-  }
-
-  .calendar-position.is-docked .calendar-position-button:disabled {
-    opacity: 0.35;
-    cursor: default;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .calendar-position:not([hidden]),
-    .calendar-position-button {
-      transition: none;
-    }
-  }
-
-  .calendar-position-button:not(:disabled):active {
-    background-color: #930;
-  }
-
   .calendar-viewport.is-carousel {
-    position: relative;
-    overflow: clip;
+    overflow: hidden;
     background-color: #fff;
   }
 
   .calendar.calendar-carousel {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
+    width: 100%;
     height: var(--calendar-height, auto);
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
+    padding: 0;
     touch-action: pan-y pinch-zoom;
   }
 
-  .calendar-carousel > .day:not(.past):has(.seance:not(.hidden)) {
+  .calendar-carousel > .day {
+    display: flex;
     flex: 0 0 100%;
-    overflow: clip;
-    padding-right: 6px;
-    padding-left: 6px;
+    min-width: 0;
+    min-height: var(--calendar-min-day-height, 0px);
+    padding: 0 6px;
     background-color: #fff;
-    transform: translateY(var(--calendar-inactive-offset, 0px));
-  }
-
-  .calendar-carousel
-    > .day.calendar-current:not(.past):has(.seance:not(.hidden)) {
-    transform: none;
-    padding-bottom: 72px;
-    min-height: 100dvh;
-  }
-
-  .calendar-carousel
-    > .day.calendar-outgoing:not(.past):has(.seance:not(.hidden)) {
-    transform: translateY(var(--calendar-outgoing-offset, 0px));
   }
 
   .calendar-carousel > .day > .date {
