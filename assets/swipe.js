@@ -5,6 +5,7 @@ function initializeCalendarSwipe() {
     document.querySelector(
       ".calendar-position",
     ); /* En-tête sticky du calendrier */
+  const buttons = position.querySelectorAll(".calendar-position-button");
   const days = Array.from(
     calendar.querySelectorAll(
       ":scope > .day[data-date]:not(.past):has(.seance:not(.hidden))",
@@ -119,6 +120,19 @@ function initializeCalendarSwipe() {
     );
   }
 
+  function targetIndex(offset) {
+    if (Math.abs(offset) === 1) {
+      const target = current + offset;
+      return target >= 0 && target < days.length ? target : -1;
+    }
+    const date = new Date(
+      Date.parse(days[current].dataset.date) + offset * 24 * 60 * 60 * 1000,
+    )
+      .toISOString()
+      .slice(0, 10);
+    return days.findIndex((day) => day.dataset.date === date);
+  }
+
   function updateDay(api) {
     if (!mobile.matches) return;
     const selected = api.selectedScrollSnap();
@@ -127,6 +141,13 @@ function initializeCalendarSwipe() {
       day.inert = index !== current;
     });
     updateLabel();
+    buttons.forEach((button) => {
+      const disabled = targetIndex(Number(button.dataset.days)) === -1;
+      if (disabled && document.activeElement === button) {
+        position.focus({ preventScroll: true });
+      }
+      button.disabled = disabled;
+    });
   }
 
   function enableCarousel() {
@@ -222,6 +243,22 @@ function initializeCalendarSwipe() {
       event.preventDefault();
       embla.scrollNext();
     }
+  });
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!embla) return;
+      const offset = Number(button.dataset.days);
+      if (offset === -1) embla.scrollPrev();
+      else if (offset === 1) embla.scrollNext();
+      else {
+        embla.scrollTo(targetIndex(offset));
+        // Embla's public scrollTo uses the same animation for every distance.
+        if (!reducedMotion.matches) {
+          embla.internalEngine().scrollBody.useDuration(2.25).useFriction(0.36);
+        }
+      }
+    });
   });
 
   const resizeObserver = new ResizeObserver((entries) => {

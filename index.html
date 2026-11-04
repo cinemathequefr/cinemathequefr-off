@@ -195,23 +195,21 @@
         </p>
         <div
           class="calendar-position"
-          aria-live="polite"
-          aria-atomic="true"
           aria-keyshortcuts="ArrowLeft ArrowRight"
           tabindex="0"
           hidden
         >
-          <button class="calendar-position-button" type="button" aria-label="Reculer de 7 jours">
+          <button class="calendar-position-button" type="button" data-days="-7" aria-label="Reculer de 7 jours" disabled>
             -7j
           </button>
-          <button class="calendar-position-button" type="button" aria-label="Reculer d’un jour">
+          <button class="calendar-position-button" type="button" data-days="-1" aria-label="Reculer d’un jour" disabled>
             -1j
           </button>
-          <span class="calendar-position-date"></span>
-          <button class="calendar-position-button" type="button" aria-label="Avancer d’un jour">
+          <span class="calendar-position-date" aria-live="polite" aria-atomic="true"></span>
+          <button class="calendar-position-button" type="button" data-days="1" aria-label="Avancer d’un jour" disabled>
             +1j
           </button>
-          <button class="calendar-position-button" type="button" aria-label="Avancer de 7 jours">
+          <button class="calendar-position-button" type="button" data-days="7" aria-label="Avancer de 7 jours" disabled>
             +7j
           </button>
         </div>

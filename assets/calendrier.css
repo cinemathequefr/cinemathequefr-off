@@ -592,7 +592,12 @@ label.open:hover > .fold-ctrl {
     cursor: pointer;
   }
 
-  .calendar-position-button:active {
+  .calendar-position-button:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .calendar-position-button:not(:disabled):active {
     background-color: #930;
   }
 
