@@ -600,6 +600,7 @@ label.open:hover > .fold-ctrl {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    padding: 6px;
     /* border-radius: 100%; */
     transition:
       opacity 0.2s,
@@ -658,6 +659,7 @@ label.open:hover > .fold-ctrl {
     > .day.calendar-current:not(.past):has(.seance:not(.hidden)) {
     transform: none;
     padding-bottom: 72px;
+    min-height: 100dvh;
   }
 
   .calendar-carousel
