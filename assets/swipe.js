@@ -144,7 +144,12 @@ function initializeCalendarSwipe() {
 
   function updateDay(api) {
     if (!mobile.matches) return;
-    const selected = api.selectedScrollSnap();
+    const selected = api.selectedSnap();
+    // Keep momentum-driven swipes to at most one day.
+    if (pointerDown && Math.abs(selected - current) > 1) {
+      api.goTo(current + Math.sign(selected - current));
+      return;
+    }
     if (selected !== current) showDay(selected);
     days.forEach((day, index) => {
       day.inert = index !== current;
@@ -168,18 +173,19 @@ function initializeCalendarSwipe() {
     embla = EmblaCarousel(viewport, {
       align: "start",
       slides: days,
-      startIndex: current,
+      startSnap: current,
       loop: false,
+      dragFree: "snap",
       duration: 25,
       breakpoints: {
         "(prefers-reduced-motion: reduce)": { duration: 0 },
       },
     });
     embla.on("select", updateDay);
-    embla.on("pointerDown", () => {
+    embla.on("pointerdown", () => {
       pointerDown = true;
     });
-    embla.on("pointerUp", resetGesture);
+    embla.on("pointerup", resetGesture);
     embla.on("scroll", () => {
       if (pointerDown) setSwiping(true);
     });
@@ -188,7 +194,7 @@ function initializeCalendarSwipe() {
       clearOutgoing();
       updateLayout();
     });
-    embla.on("reInit", (api) => {
+    embla.on("reinit", (api) => {
       if (!mobile.matches) return;
       resetGesture();
       clearOutgoing();
@@ -249,10 +255,10 @@ function initializeCalendarSwipe() {
     if (!embla || event.target !== position) return;
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      embla.scrollPrev();
+      embla.goToPrev();
     } else if (event.key === "ArrowRight") {
       event.preventDefault();
-      embla.scrollNext();
+      embla.goToNext();
     }
   });
 
@@ -260,9 +266,9 @@ function initializeCalendarSwipe() {
     button.addEventListener("click", () => {
       if (!embla) return;
       const offset = Number(button.dataset.days);
-      if (offset === -1) embla.scrollPrev();
-      else if (offset === 1) embla.scrollNext();
-      else embla.scrollTo(targetIndex(offset));
+      if (offset === -1) embla.goToPrev();
+      else if (offset === 1) embla.goToNext();
+      else embla.goTo(targetIndex(offset));
     });
   });
 
