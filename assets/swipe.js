@@ -170,6 +170,7 @@ function initializeCalendarSwipe() {
       slides: days,
       startIndex: current,
       loop: false,
+      duration: 25,
       breakpoints: {
         "(prefers-reduced-motion: reduce)": { duration: 0 },
       },
@@ -261,13 +262,7 @@ function initializeCalendarSwipe() {
       const offset = Number(button.dataset.days);
       if (offset === -1) embla.scrollPrev();
       else if (offset === 1) embla.scrollNext();
-      else {
-        embla.scrollTo(targetIndex(offset));
-        // Embla's public scrollTo uses the same animation for every distance.
-        if (!reducedMotion.matches) {
-          embla.internalEngine().scrollBody.useDuration(2.25).useFriction(0.36);
-        }
-      }
+      else embla.scrollTo(targetIndex(offset));
     });
   });
 

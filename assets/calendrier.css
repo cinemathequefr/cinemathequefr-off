@@ -587,9 +587,9 @@ label.open:hover > .fold-ctrl {
   }
 
   .calendar-position-button {
-    flex: 0 0 36px;
-    width: 36px;
-    height: 36px;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
     padding: 0;
     border: 0;
     background: transparent;
@@ -600,6 +600,7 @@ label.open:hover > .fold-ctrl {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    /* border-radius: 100%; */
     transition:
       opacity 0.2s,
       visibility 0s linear 0.2s;
@@ -656,6 +657,7 @@ label.open:hover > .fold-ctrl {
   .calendar-carousel
     > .day.calendar-current:not(.past):has(.seance:not(.hidden)) {
     transform: none;
+    padding-bottom: 72px;
   }
 
   .calendar-carousel
