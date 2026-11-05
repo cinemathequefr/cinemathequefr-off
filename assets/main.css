@@ -134,7 +134,7 @@ strong {
 } */
 
 .changed {
-  background-color: #e9f76a;
+  background-color: hsl(66, 50%, 85%);
 }
 
 /* .bloc-lien:hover > h2 {
