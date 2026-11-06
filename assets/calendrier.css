@@ -433,21 +433,6 @@ label.open:hover > .fold-ctrl {
   display: block;
 }
 
-.film-surprise {
-  padding: 6px 3px;
-  background-color: hsl(289, 15%, 85%);
-  transition: 0.1s;
-}
-
-.seance:hover .film-surprise {
-  background-color: hsl(289, 15%, 95%);
-}
-
-.film-surprise-label {
-  color: #712d86;
-  font-weight: 500;
-}
-
 /* Media queries */
 
 /* Largeur >= 1400px, sur 7 colonnes */

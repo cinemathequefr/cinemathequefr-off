@@ -122,6 +122,11 @@ strong {
   gap: 0.5rem;
 }
 
+.bloc-lien h3 > svg {
+  flex: 0 0 24px;
+  margin-right: 4px;
+}
+
 .bloc-lien p {
   margin: 0;
 }
@@ -134,7 +139,7 @@ strong {
 } */
 
 .changed {
-  background-color: hsl(66, 50%, 85%);
+  background-color: var(--cf-turquoise-light-1, #dee);
 }
 
 /* .bloc-lien:hover > h2 {
