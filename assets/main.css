@@ -139,7 +139,13 @@ strong {
 } */
 
 .changed {
-  background-color: var(--cf-turquoise-light-1, #dee);
+  background-color: #ff6;
+  /* background-color: var(--cf-turquoise-light-1, #dee); */
+}
+
+.realisateur-annee > .changed,
+.copie > .changed {
+  color: #022;
 }
 
 /* .bloc-lien:hover > h2 {
