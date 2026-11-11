@@ -143,6 +143,10 @@ strong {
   /* background-color: var(--cf-turquoise-light-1, #dee); */
 }
 
+.mention > .small {
+  font-size: 0.875em;
+}
+
 .realisateur-annee > .changed,
 .copie > .changed {
   color: #022;
